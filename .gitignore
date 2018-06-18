@@ -107,4 +107,4 @@ venv.bak/
 
 # ------------- Python Above -------------
 
-backend/reddit_credentials.py
+reddit_credentials.py
