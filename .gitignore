@@ -106,3 +106,5 @@ venv.bak/
 .mypy_cache/
 
 # ------------- Python Above -------------
+
+backend/reddit_credentials.py
