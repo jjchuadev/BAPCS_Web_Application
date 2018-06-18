@@ -12,19 +12,12 @@ reddit = praw.Reddit(client_id=rc.client_id,
                      user_agent=rc.user_agent)
 # print(reddit.auth.url(['identity'], '...', 'permanent'))
 
-@app.route("/")
-def index():
+@app.route("/search/<item>")
+def keyboard(item):
     subreddit = reddit.subreddit('buildapcsales')
     hot = subreddit.hot()
-    ret = "\n".join(["<p><a href={}>{}</a></p>".format(s.shortlink, s.title) for s in hot if not s.stickied])
-    return ret
-
-@app.route("/monitor")
-def monitors():
-    subreddit = reddit.subreddit('buildapcsales')
-    hot = subreddit.hot()
-    p = Parser(hot, "Monitor")
-    return p.return_links()
+    p = Parser(hot, item)
+    return p.return_json()
 
 if __name__ == "__main__":
     app.run(debug=True)
